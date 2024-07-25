@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_page_config(page_title="The Elon Musk", page_icon=":earth_americas:", layout="wide", initial_sidebar_state="collapsed")
 
 # Dictionary to store information about Elon Musk
 elon_info = {
@@ -38,7 +39,7 @@ def get_response(message):
 st.markdown("<h1 style='text-align: center;'>About Elon Musk</h1>", unsafe_allow_html=True)
 
 # Display introductory message
-st.markdown("<h1 style='text-align: center;'>Welcome to the Elon Musk chatbot! Ask me anything about Elon Musk.</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center;'>Welcome to the Elon Musk chatbot! Ask me anything about Elon Musk.</p>", unsafe_allow_html=True)
 
 # Initialize an empty list to store chat history
 chat_history = []
