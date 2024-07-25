@@ -45,7 +45,8 @@ st.markdown("<p style='text-align: center;'>Welcome to the Elon Musk chatbot! As
 chat_history = []
 
 # Chat input widget
-user_input = st.chat_input("You:").lower()
+user_input = st.chat_input("You:")
+user_input = user_input.lower()
 
 if user_input:
     # Save user's message to chat history
