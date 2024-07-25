@@ -5,7 +5,7 @@ elon_info = {
     "biography": "Elon Musk is a business magnate, industrial designer, and engineer. He is the founder, CEO, CTO, and chief designer of SpaceX; early investor, CEO, and product architect of Tesla, Inc.; founder of The Boring Company; co-founder of Neuralink; and co-founder and initial co-chairman of OpenAI.",
     "tesla": "Tesla, Inc. is an American electric vehicle and clean energy company led by CEO Elon Musk. Tesla's products include electric cars, battery energy storage from home to grid-scale, solar panels and solar roof tiles, and related products and services.",
     "spacex": "SpaceX is an American aerospace manufacturer and space transport services company founded by Elon Musk. It is known for developing the Falcon launch vehicles and the Dragon spacecrafts, and is working towards the goal of enabling humans to live on other planets.",
-    # Add more key-value pairs as needed for other queries
+    "Hello": "Hi, How are you?"
 }
 
 # Function to respond based on user input
@@ -17,7 +17,7 @@ def get_response(message):
     return "Sorry, I don't have information on that topic. Please ask about Elon Musk's biography, Tesla, or SpaceX."
 
 # Streamlit app title
-st.title("Elon Musk Chatbot")
+st.markdown("<h1 style='text-align: center;'>About Elon Musk</h1>", unsafe_allow_html=True)
 
 # Display introductory message
 st.markdown("Welcome to the Elon Musk chatbot! Ask me anything about Elon Musk.")
@@ -41,7 +41,5 @@ if user_input:
 # Display chat history
 st.markdown("---")
 for chat in chat_history:
-    if chat["type"] == "user":
-        st.text_area("You:", chat["user"])
-    elif chat["type"] == "ai":
+    if chat["type"] == "ai":
         st.text_area("Bot:", chat["user"])
