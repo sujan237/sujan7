@@ -25,24 +25,23 @@ st.markdown("Welcome to the Elon Musk chatbot! Ask me anything about Elon Musk."
 # Initialize an empty list to store chat history
 chat_history = []
 
-# Chat interface
-user_input = st.text_input("You:", "")
+# Chat input widget
+user_input = st.chat_input("You:")
 
-if st.button("Send"):
-    if user_input:
-        # Save user's message to chat history
-        chat_history.append({"user": user_input, "type": "user"})
-        
-        # Get AI response based on user input
-        ai_response = get_response(user_input)
-        
-        # Save AI's response to chat history
-        chat_history.append({"user": ai_response, "type": "ai"})
+if user_input:
+    # Save user's message to chat history
+    chat_history.append({"user": user_input, "type": "user"})
+    
+    # Get AI response based on user input
+    ai_response = get_response(user_input)
+    
+    # Save AI's response to chat history
+    chat_history.append({"user": ai_response, "type": "ai"})
 
 # Display chat history
 st.markdown("---")
 for chat in chat_history:
     if chat["type"] == "user":
-        st.text_input("You:", chat["user"], key=chat["user"])
+        st.text_area("You:", chat["user"])
     elif chat["type"] == "ai":
-        st.text_input("Bot:", chat["user"], key=chat["user"])
+        st.text_area("Bot:", chat["user"])
