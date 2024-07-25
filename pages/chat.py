@@ -25,17 +25,11 @@ elon_info = {
     "cryptocurrency regulation": "Elon Musk has been vocal about the need for cryptocurrency regulation to prevent scams and ensure consumer protection.",
 }
 
-
-# Function to respond based on user input
-def get_response(message):
-    message_lower = message.lower()
-    for key in elon_info:
-        if key in message_lower:
-            return elon_info[key]
-    return "Sorry, I don't have information on that topic. Please ask about Elon Musk's biography, Tesla, or SpaceX."
+# Get a list of available topics from the elon_info dictionary
+available_topics = list(elon_info.keys())
 
 # Streamlit app title
-st.markdown("<h1 style='text-align: center;'>About Elon Musk</h1>", unsafe_allow_html=True)
+st.title("Elon Musk Chatbot")
 
 # Display introductory message
 st.markdown("Welcome to the Elon Musk chatbot! Ask me anything about Elon Musk.")
@@ -43,21 +37,36 @@ st.markdown("Welcome to the Elon Musk chatbot! Ask me anything about Elon Musk."
 # Initialize an empty list to store chat history
 chat_history = []
 
-# Chat input widget
-user_input = st.chat_input("You:")
+# Function to respond based on user input
+def get_response(message):
+    message_lower = message.lower()
+    for key in elon_info:
+        if key in message_lower:
+            return elon_info[key]
+    return None
 
-if user_input:
-    # Save user's message to chat history
-    chat_history.append({"user": user_input, "type": "user"})
-    
-    # Get AI response based on user input
-    ai_response = get_response(user_input)
-    
-    # Save AI's response to chat history
-    chat_history.append({"user": ai_response, "type": "ai"})
+# Chat input widget
+user_input = st.text_input("You:", "")
+
+if st.button("Send"):
+    if user_input:
+        # Save user's message to chat history
+        chat_history.append({"user": user_input, "type": "user"})
+        
+        # Get AI response based on user input
+        ai_response = get_response(user_input)
+        
+        if ai_response:
+            # Save AI's response to chat history
+            chat_history.append({"user": ai_response, "type": "ai"})
+        else:
+            # User asked about an unknown topic
+            chat_history.append({"user": f"Sorry, I can only answer these questions: {', '.join(available_topics)}", "type": "ai"})
 
 # Display chat history
 st.markdown("---")
 for chat in chat_history:
-    if chat["type"] == "ai":
+    if chat["type"] == "user":
+        st.text_area("You:", chat["user"])
+    elif chat["type"] == "ai":
         st.text_area("Bot:", chat["user"])
