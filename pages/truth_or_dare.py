@@ -48,6 +48,5 @@ elif option == "Dare":
 
 st.markdown("---")
 
-st.write("Enjoy playing! Click the button below to get a new Truth or Dare.")
 if st.button("New Truth or Dare"):
     st.empty()  # Clear previous output
